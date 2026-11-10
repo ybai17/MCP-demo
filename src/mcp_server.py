@@ -28,13 +28,13 @@ async def make_request(url: str) -> dict[str, Any] | None:
     headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
 
     async with httpx2.AsyncClient() as client:
-        # try:
+        try:
             response = await client.get(url, headers=headers, timeout=30.0)
             response.raise_for_status()
             return response.json()
-        # except httpx2.HTTPError as e:
-        #     logger.error("Error making request to %s: %s", url, e)
-        #     return None
+        except httpx2.HTTPError as e:
+            logger.error("Error making request to %s: %s", url, e)
+            return response.json() if response is not None else None
 
 # Tools
 
