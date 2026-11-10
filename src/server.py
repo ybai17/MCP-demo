@@ -36,13 +36,17 @@ def get_horse(name):
 
 @app.route("/horse/<string:name>/color", methods=["GET"])
 def get_horse_color(name):
-
-    pass
+    try:
+        return jsonify({"data": horses[name].get("color")})
+    except KeyError:
+        return jsonify({"error": "Horse not found."}), 404
 
 @app.route("/race/<string:name>", methods=["GET"])
 def get_race(name):
-
-    pass
+    try:
+        return jsonify({"data": races[name]})
+    except KeyError:
+        return jsonify({"error": "Race not found."}), 404
 
 logger.info("API setup, server is running")
 
