@@ -1,5 +1,6 @@
 # this script file will contain unit tests for the MCP client and model wrapper integration
 
+import json
 import asyncio, sys
 import pytest
 from mcp_client import chat_loop, server_params
@@ -69,8 +70,8 @@ async def test_get_all_horses(mcp_client):
     # result = await mcp_client.call_tool(tool_name, tool_args)
     result = await mcp_client.call_tool("get_all_horses", {})
     print(f"[Calling {tool_name} with args {tool_args}]")
-
-    assert not result.is_error
+    print(f"______________RESULT: {json.loads(result.content[0].text)}")
+    assert json.loads(result.content[0].text) == {"data": ["Symboli Rudolf", "Gold Ship", "Kitasan Black"]}
 
 async def test_get_all_races(mcp_client):
 
