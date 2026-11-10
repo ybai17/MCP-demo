@@ -1,32 +1,25 @@
-# create 3 instances of Horses and Races
+# create 3 Horse class instances and 3 Race class instances
+# These are the data in some arbitrary, simulated database that the server application pulls data from
 
-from horse import Horse
-from race import Race
+from horse import Horse, SYMBOLI_RUDOLF, GOLD_SHIP, KITASAN_BLACK
+from race import Race, ARIMA_KINEN, TEIO_SHO, TENNO_SHO_AUTUMN
 
 def init_horses():
 
-    horse1 = Horse("Symboli Rudolf", "Brown", 1989, {"sprint": 'E', "mile": 'C', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
-    horse2 = Horse("Gold Ship", "Gray", 2017, {"sprint": 'G', "mile": 'C', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
-    horse3 = Horse("Kitasan Black", "Black", 2016, {"sprint": 'F', "mile": 'D', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
-
-    horse_dict = {
-        horse1.name: horse1.to_dict(),
-        horse2.name: horse2.to_dict(),
-        horse3.name: horse3.to_dict()
+    horse_list = {
+        SYMBOLI_RUDOLF.name: SYMBOLI_RUDOLF.to_dict(),
+        GOLD_SHIP.name: GOLD_SHIP.to_dict(),
+        KITASAN_BLACK.name: KITASAN_BLACK.to_dict()
     }
 
-    return horse_dict
+    return horse_list
 
 def init_races():
 
-    race1 = Race("Arima Kinen", 2500, "long", "turf")
-    race2 = Race("Teio Sho", 2000, "medium", "dirt")
-    race3 = Race("Tenno Sho (Autumn)", 2400, "medium", "turf")
-
-    race_dict = {
-        race1.name: race1.to_dict(),
-        race2.name: race2.to_dict(),
-        race3.name: race3.to_dict()
+    race_list = {
+        ARIMA_KINEN.name: ARIMA_KINEN.to_dict(),
+        TEIO_SHO.name: TEIO_SHO.to_dict(),
+        TENNO_SHO_AUTUMN.name: TENNO_SHO_AUTUMN.to_dict()
     }
 
-    return race_dict
+    return race_list
