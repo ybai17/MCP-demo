@@ -9,6 +9,9 @@ from model import Model, Response, Content
 from mcp import Client, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
+from horse import SYMBOLI_RUDOLF, GOLD_SHIP, KITASAN_BLACK
+from race import ARIMA_KINEN, TEIO_SHO, TENNO_SHO_AUTUMN
+
 CONTENT_NUM_LIMIT = 1
 DEBUG_FLAG = True
 MODEL = Model(name="LLM")
@@ -19,12 +22,6 @@ MODEL = Model(name="LLM")
 # an @pytest.mark.asyncio decorator on each test function. Pytest basically looks for this variable
 # to determine which async backend to use for the tests.
 pytestmark = pytest.mark.anyio
-
-def fake_tool_use(name, args):
-    """Make the fake LLM 'decide' to call a specific tool."""
-    def _gen(self, max_tokens=1000, messages=None, tools=None):
-        return Response([Content(name=name, input=args, type="tool_use", text="", id=0)])
-    return _gen
 
 @pytest.fixture(scope="session",autouse=True)
 def init_before_tests():
@@ -67,8 +64,7 @@ async def test_get_all_horses(mcp_client):
     tool_args = content.input
 
     # Execute tool call
-    # result = await mcp_client.call_tool(tool_name, tool_args)
-    result = await mcp_client.call_tool("get_all_horses", {})
+    result = await mcp_client.call_tool(tool_name, tool_args)
     print(f"[Calling {tool_name} with args {tool_args}]")
     print(f"______________RESULT: {json.loads(result.content[0].text)}")
     assert json.loads(result.content[0].text) == {"data": ["Symboli Rudolf", "Gold Ship", "Kitasan Black"]}
@@ -89,9 +85,12 @@ async def test_get_all_races(mcp_client):
     tool_name = content.name
     tool_args = content.input
 
-    # result = await mcp_client.call_tool(tool_name, tool_args)
 
-    assert True == True
+    # Execute tool call
+    result = await mcp_client.call_tool(tool_name, tool_args)
+    print(f"[Calling {tool_name} with args {tool_args}]")
+    # print(f"______________RESULT: {json.loads(result.content[0].text)}")
+    assert json.loads(result.content[0].text) == {"data": ["Arima Kinen", "Teio Sho", "Tenno Sho (Autumn)"]}
 
 async def test_get_horse_data(mcp_client):
 
@@ -109,9 +108,11 @@ async def test_get_horse_data(mcp_client):
     tool_name = content.name
     tool_args = content.input
 
-    # result = await mcp_client.call_tool(tool_name, tool_args)
-
-    assert True == True
+    # Execute tool call
+    result = await mcp_client.call_tool(tool_name, tool_args)
+    print(f"[Calling {tool_name} with args {tool_args}]")
+    # print(f"______________RESULT: {json.loads(result.content[0].text)}")
+    assert json.loads(result.content[0].text) == {"data": SYMBOLI_RUDOLF.to_dict()}
 
 async def test_get_race_data(mcp_client):
 
@@ -129,13 +130,16 @@ async def test_get_race_data(mcp_client):
     tool_name = content.name
     tool_args = content.input
 
-    # result = await mcp_client.call_tool(tool_name, tool_args)
-
-    assert True == True
+    # Execute tool call
+    result = await mcp_client.call_tool(tool_name, tool_args)
+    print(f"[Calling {tool_name} with args {tool_args}]")
+    # print(f"______________RESULT: {json.loads(result.content[0].text)}")
+    assert json.loads(result.content[0].text) == {"data": ARIMA_KINEN.to_dict()}
+    
 
 async def test_get_horse_data_error(mcp_client):
 
-    Model.generate_response = lambda self, max_tokens=1000, messages=[{}], tools=[]: Response([Content(name="get_horse_data_error",
+    Model.generate_response = lambda self, max_tokens=1000, messages=[{}], tools=[]: Response([Content(name="get_horse_data",
                                                     input={"name": "Sirius Symboli"},
                                                     type="tool_use",
                                                     text="",
@@ -149,13 +153,16 @@ async def test_get_horse_data_error(mcp_client):
     tool_name = content.name
     tool_args = content.input
 
-    # result = await mcp_client.call_tool(tool_name, tool_args)
-
-    assert True == True
+    # Execute tool call
+    result = await mcp_client.call_tool(tool_name, tool_args)
+    print(f"[Calling {tool_name} with args {tool_args}]")
+    print(f"______________RESULT: {json.loads(result.content[0].text)}")
+    assert json.loads(result.content[0].text) == {"error": "Horse not found"}
+    
 
 async def test_get_race_data_error(mcp_client):
 
-    Model.generate_response = lambda self, max_tokens=1000, messages=[{}], tools=[]: Response([Content(name="get_race_data_error",
+    Model.generate_response = lambda self, max_tokens=1000, messages=[{}], tools=[]: Response([Content(name="get_race_data",
                                                     input={"name": "Tenno Sho"},
                                                     type="tool_use",
                                                     text="",
@@ -169,7 +176,8 @@ async def test_get_race_data_error(mcp_client):
     tool_name = content.name
     tool_args = content.input
 
-    # result = await mcp_client.call_tool(tool_name, tool_args)
-
-    assert True == True
+    result = await mcp_client.call_tool(tool_name, tool_args)
+    print(f"[Calling {tool_name} with args {tool_args}]")
+    print(f"______________RESULT: {json.loads(result.content[0].text)}")
+    assert json.loads(result.content[0].text) == {"error": "Race not found"}
 
