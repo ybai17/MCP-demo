@@ -163,7 +163,7 @@ async def test_get_horse_data_error(mcp_client):
 async def test_get_race_data_error(mcp_client):
 
     Model.generate_response = lambda self, max_tokens=1000, messages=[{}], tools=[]: Response([Content(name="get_race_data",
-                                                    input={"name": "Tenno Sho"},
+                                                    input={"name": "Mile Championship"},
                                                     type="tool_use",
                                                     text="",
                                                     id=0)])
