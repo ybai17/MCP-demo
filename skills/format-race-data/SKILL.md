@@ -8,9 +8,13 @@ description: This is a guide for how to format the data obtained from calling th
 The race data comes with the following data (and their types):
 
 Name (str)
+
 Distance (int)
+
 Distance type (str)
+
 Track type (str)
+
 
 The data should be formatted into a standard markdown-style table so that it can easily be viewed in both raw text or in a chatbot-style user interface. An example is provided below.
 
