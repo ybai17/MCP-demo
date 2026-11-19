@@ -9,7 +9,7 @@ class Horse:
         Args:
             name (str): The name of the horse.
             color (str): The color of the horse.
-            year (int): A year in which the horse was active.
+            year (int): The year the horse was foaled or born.
             distance_aptitudes (dict): The horse's aptitudes (A = high, G = low) for different distances (sprint, mile, medium, long).
             track_aptitudes (dict): The horse's aptitudes (A = high, G = low) for different track types (turf, dirt).
         """
@@ -37,6 +37,6 @@ class Horse:
             "track_aptitudes": self.track_aptitudes
         }
 
-SYMBOLI_RUDOLF = Horse("Symboli Rudolf", "Brown", 1989, {"sprint": 'E', "mile": 'C', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
-GOLD_SHIP = Horse("Gold Ship", "Gray", 2017, {"sprint": 'G', "mile": 'C', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
-KITASAN_BLACK = Horse("Kitasan Black", "Black", 2016, {"sprint": 'F', "mile": 'D', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
+SYMBOLI_RUDOLF = Horse("Symboli Rudolf", "Brown", 1981, {"sprint": 'E', "mile": 'C', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
+GOLD_SHIP = Horse("Gold Ship", "Gray", 2009, {"sprint": 'G', "mile": 'C', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
+KITASAN_BLACK = Horse("Kitasan Black", "Black", 2012, {"sprint": 'F', "mile": 'D', "medium": 'A', "long": 'A'}, {"turf": 'A', "dirt": 'G'})
