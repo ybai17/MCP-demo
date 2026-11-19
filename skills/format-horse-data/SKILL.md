@@ -21,7 +21,7 @@ The third table will include the track aptitudes.
 
 |      Name      | Color | Birth year |
 |:--------------:|:-----:|:----------:|
-| Symboli Rudolf | Brown |    1989    |
+| Symboli Rudolf | Brown |    1981    |
 
 | Sprint | Mile | Medium | Long |
 |:------:|:----:|:------:|:----:|
