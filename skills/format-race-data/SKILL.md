@@ -5,7 +5,8 @@ description: This is a guide for how to format the data obtained from calling th
 
 # Formatting race data guide
 
-The race data comes with the following data (and their types)
+The race data comes with the following data (and their types):
+
 Name (str)
 Distance (int)
 Distance type (str)
