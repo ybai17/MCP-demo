@@ -20,15 +20,15 @@ The third table will include the track aptitudes.
 # Example
 
 |      Name      | Color | Birth year |
-|----------------|-------|------------|
+|:--------------:|:-----:|:----------:|
 | Symboli Rudolf | Brown |    1989    |
 
 | Sprint | Mile | Medium | Long |
-|--------|------|--------|------|
+|:------:|:----:|:------:|:----:|
 |    E   |  C   |   A    |   A  |
 
 | Turf | Dirt |
-|------|------|
+|:----:|:----:|
 |  A   |  G   |
 
 # Other notes
